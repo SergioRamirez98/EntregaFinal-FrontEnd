@@ -7,12 +7,6 @@
   box-sizing: border-box;
 }
 
-/*body {
-  font-family: 'Roboto', sans-serif;
-  background-color: rgba(255, 240, 240, 0.9);
-  color: #333;
-
-}*/
 body {
   font-family: 'Roboto', sans-serif;
   color: #333;
@@ -62,7 +56,7 @@ header {
 }
 
 .nav_List {
-  list-style: none;
+  list-style: none;  
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -116,6 +110,13 @@ header {
   box-shadow: 0 4px 10px rgb(160, 3, 3);
   border-radius: 5px;
 }
+/*
+#CarritoActual {
+    background-color: #27ae60;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+}*/
 
 .caption {
   text-align: center;
@@ -132,7 +133,7 @@ h3 {
   color: rgb(224, 10, 10);
 }
 #productos {
-  margin-bottom: 20px; /* Separación de 20px entre el título y las tarjetas */
+  margin-bottom: 20px; 
 }
 .productos_section {
 
@@ -174,7 +175,7 @@ article {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   font-weight: bold;
   text-align: center;
-  cursor: pointer;  /* Esto hace que parezca un "enlace" al usuario */
+  cursor: pointer;  /
 }
 
 .producto:hover {
@@ -182,10 +183,12 @@ article {
   box-shadow: 0 10px 20px rgba(224, 10, 10, 0.5);
 }
 
-
-
-
-
+.Tarjeta {
+    display: flex; 
+    justify-content: space-around; 
+    margin-top: auto;
+    padding-top: 10px;
+}
 
 article span {
   font-size: 1.2rem;
@@ -206,16 +209,52 @@ article iframe {
 }
 
 
-.info, .compra{
-    background-color: rgb(126, 126, 170);
+.info{
+    background-color: rgb(241, 38, 38);
+    text-decoration: none;
     color: #ecf0f1;
     padding: 10px;
     border-radius: 6px;
     margin-top: 8px;
     display: inline-block;
 }
+.info:hover{ background: rgb(190, 8, 8); 
+    transform: scale(1.05); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);}
 
+.Carrito{  
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    color: #ecf0f1;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 8px;
+    text-decoration: none;
+    display: inline-block;
+}
 
+.producto button {
+    background-color: rgb(241, 38, 38); 
+    text-decoration: none;
+    color: #ecf0f1;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 8px;
+    display: inline-block;
+    
+    
+    width: 80px; 
+    height: auto;
+    font-size: inherit;
+    border: none; 
+    transition: all 0.3s ease;
+}
+
+.producto button:hover {
+    background: rgb(190, 8, 8);
+    transform: scale(1.05); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+}
 
 .resenas-grid {
     margin-top: 50px;
@@ -228,6 +267,7 @@ article iframe {
 }
 
 .Recuadro {
+  text-decoration: none;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -334,7 +374,6 @@ footer {
     padding: 30px 0;
 }
 
-/* Sección izquierda: Imagen + Resumen */
 .detail-content .detail.product {
     background-color: #fff;
     padding: 25px;
@@ -359,12 +398,11 @@ footer {
     font-weight: bold;
 }
 
-/* Sección derecha: Información detallada */
 #product-full {
     background-color: #fff;
     padding: 25px;
     border-radius: 12px;
-    width: 55%;  /* Un poco más grande que la sección izquierda */
+    width: 55%;
 }
 
 #product-full h2,
@@ -378,9 +416,8 @@ footer {
     line-height: 1.6;
 }
 
-/* Reseñas dentro del detalle */
 #product-full .comment {
-    border-left: 4px solid rgb(83, 81, 81);
+  
     background-color: #fafafa;
     width: 80%;
     margin: 10px;
