@@ -1,4 +1,3 @@
-
 const ProductosContainer = document.querySelector(".productos");
 const ResenasContainer = document.querySelector(".resenas-grid")
 
@@ -8,7 +7,14 @@ fetch('https://dummyjson.com/products')
     .then((response) => response.json())
 
     .then((data) => {
-        const products = data.products.slice(0,6);
+
+         const productosComestibles = data.products.filter(prod => 
+            prod.tags.includes("fruits") ||
+            prod.tags.includes("vegetables") ||
+            prod.tags.includes("meat") ||
+            prod.tags.includes("condiments")
+        );
+           const products = productosComestibles.slice(0, 6);
 
 
         let ProductosHTML = "";
@@ -42,68 +48,68 @@ fetch('https://dummyjson.com/products')
             `
         }
         ProductosContainer.innerHTML = ProductosHTML
-        
 
 
-let comentarios = [];
-for (let i = 0; i < products.length; i++) {
-    const prod = products[i];
-    if (prod.reviews) { comentarios = comentarios.concat(prod.reviews); }
-}
 
-comentarios = comentarios.slice(0, 4);
+        let comentarios = [];
+        for (let i = 0; i < products.length; i++) {
+            const prod = products[i];
+            if (prod.reviews) { comentarios = comentarios.concat(prod.reviews); }
+        }
 
-let comentariosHTML = "";
-for (let i = 0; i < comentarios.length; i++) {
-    const Comentario = comentarios[i];
-    comentariosHTML +=
-        `   
+        comentarios = comentarios.slice(0, 4);
+
+        let comentariosHTML = "";
+        for (let i = 0; i < comentarios.length; i++) {
+            const Comentario = comentarios[i];
+            comentariosHTML +=
+                `   
         
          <div class="Recuadro">
             <h4>${Comentario.reviewerName}</h4>
             <p>${Comentario.comment}.</p>
         </div>
         `
-        
-}
-ResenasContainer.innerHTML =comentariosHTML;
-})
+
+        }
+        ResenasContainer.innerHTML = comentariosHTML;
+    })
 
     .catch((error) => console.log(error))
 
 
-    function agregarAlCarrito(id, titulo, precio, imagen) {
+function agregarAlCarrito(id, titulo, precio, imagen) {
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     const productoExistente = carrito.find(item => item.id === id);
-    
-    // Si el producto ya está en el carrito, aumentamos la cantidad
+
     if (productoExistente) {
         productoExistente.cantidad += 1;
+        alert(`"${titulo}" sumado al carrito. Ahora tienes ${productoExistente.cantidad} en el carrito.`);
+
     } else {
-        // Si no está, lo agregamos al carrito
         carrito.push({ id, titulo, precio, imagen, cantidad: 1 });
+        alert(`"${titulo}" agregado al carrito.`);
     }
 
-    // Guardamos el carrito en localStorage
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    // Actualizamos el contador del carrito
     actualizarContadorCarrito();
 
-    // Alerta al usuario
-    alert(`"${titulo}" agregado al carrito.`);
 }
 
-// Función para actualizar el contador del carrito
+
 function actualizarContadorCarrito() {
-    /*const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    const totalProductos = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-    document.querySelector("#CarritoActual").textContent = `Carrito: ${totalProductos}`;*/
 
 
-const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    const totalProductos = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-    
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    let totalProductos = 0;
+
+    for (let i = 0; i < carrito.length; i++) {
+        if (carrito[i].cantidad > 0) {
+            totalProductos += 1;
+        }
+    }
     const carritoLink = document.querySelector("#EnlaceCarrito");
     if (carritoLink) {
         carritoLink.textContent = `Carrito: ${totalProductos}`;
