@@ -1,5 +1,5 @@
 const lista = document.querySelector("#lista-carrito");
-const btnVaciar = document.querySelector("#vaciar-carrito");
+const btnVaciar = document.querySelector("#vaciCararrito");
 
 
 function mostrarCarrito() {
@@ -8,7 +8,7 @@ function mostrarCarrito() {
     if (carrito.length === 0) {
         lista.innerHTML = "<p>Esto parece un desierto...</p>";
         return;
-    }  
+    }
     let html = "";
 
     carrito.forEach(item => {
@@ -28,4 +28,9 @@ function mostrarCarrito() {
 
     lista.innerHTML = html;
 }
-mostrarCarrito();
+
+document.getElementById("vaciarCarrito").addEventListener("click", function () {
+    localStorage.removeItem("carrito"); 
+
+    mostrarCarrito();                    
+});
